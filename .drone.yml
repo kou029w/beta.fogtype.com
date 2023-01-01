@@ -18,7 +18,7 @@ steps:
       - ssh-keyscan beta.fogtype.com >> /root/.ssh/known_hosts
       - docker context create --docker=host=ssh://ubuntu@beta.fogtype.com beta
       - docker context use beta
-      - docker compose --project-name=beta up --detach
+      - docker compose --project-name=beta up --build --detach
       - docker compose --project-directory=example up --detach
     volumes:
       - name: ssh_key
