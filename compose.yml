@@ -1,0 +1,20 @@
+services:
+  caddy:
+    image: git.fogtype.com/nebel/caddy-docker-proxy
+    build: "."
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443/udp"
+      - "443:443/tcp"
+      - "127.0.0.1:2019:2019"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+      - caddy_config:/config
+networks:
+  default:
+    name: caddy
+volumes:
+  caddy_data:
+  caddy_config:

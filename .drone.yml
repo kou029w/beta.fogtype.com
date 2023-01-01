@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://json.schemastore.org/drone.json
+name: deploy
+kind: pipeline
+type: docker
+node:
+  instance: system
+trigger:
+  event:
+    - push
+  branch:
+    - main
+steps:
+  - name: deploy
+    image: docker:20.10.22-cli-alpine3.17@sha256:9586963dcc07a22641bf03c22f43cd7e45b3107df6bf55c92d8c5098b0ac1750
+    commands:
+      - mkdir -p /root/.ssh
+      - install -v -m 600 /home/ubuntu/.ssh/id_ed25519 /root/.ssh/id_ed25519
+      - ssh-keyscan beta.fogtype.com >> /root/.ssh/known_hosts
+      - docker context create --docker=host=ssh://ubuntu@beta.fogtype.com beta
+      - docker context use beta
+      - docker compose --project-name=beta up --detach
+    volumes:
+      - name: ssh_key
+        path: /home/ubuntu/.ssh/id_ed25519
+volumes:
+  - name: ssh_key
+    host:
+      path: /home/ubuntu/.ssh/id_ed25519
