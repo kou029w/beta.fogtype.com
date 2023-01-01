@@ -1,0 +1,12 @@
+services:
+  example:
+    image: caddy:2.6.2-alpine
+    restart: unless-stopped
+    networks:
+      - caddy
+    labels:
+      caddy: example.beta.fogtype.com
+      caddy.reverse_proxy: "{{upstreams}}"
+networks:
+  caddy:
+    external: true
