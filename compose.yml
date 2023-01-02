@@ -12,9 +12,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - caddy_data:/data
       - caddy_config:/config
+  portainer:
+    image: portainer/portainer-ce:2.16.2-alpine
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
 networks:
   default:
     name: caddy
 volumes:
   caddy_data:
   caddy_config:
+  portainer_data:
