@@ -15,8 +15,9 @@ services:
   portainer:
     image: portainer/portainer-ce:2.16.2-alpine
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:9000:9000"
+    labels:
+      caddy: beta.fogtype.com
+      caddy.reverse_proxy: "{{upstreams 9000}}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
