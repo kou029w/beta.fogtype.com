@@ -13,7 +13,7 @@ services:
       - caddy_data:/data
       - caddy_config:/config
   portainer:
-    image: portainer/portainer-ce:2.16.2-alpine
+    image: portainer/portainer-ce:2.16.2-alpine@sha256:42505180d3d12cdb83187dbe825ac2187aec0d1ebce074fc866f726a351f559f
     restart: unless-stopped
     labels:
       caddy: beta.fogtype.com
