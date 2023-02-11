@@ -1,6 +1,6 @@
 services:
   example:
-    image: caddy:2.6.3-alpine@sha256:7e7286bb77df853f278887dd9159bd643abca8447ad4a0fddb4c48ec00a7e6cc
+    image: caddy:2.6.3-alpine@sha256:ed81228ba91274f9af97ca5d41dafff1a9f1cfcedb6679377ea577c6540469b8
     restart: unless-stopped
     networks:
       - caddy
