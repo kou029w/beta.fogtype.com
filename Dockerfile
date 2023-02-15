@@ -1,5 +1,5 @@
-FROM caddy:2.6.3-builder-alpine@sha256:c0390bd15c9ea9ac5fa29d2b6c5e7549e83688ff51460ed59c0c39881f903b17 AS builder
+FROM caddy:2.6.4-builder-alpine@sha256:1c3ef085bd94af6d3fe0e8d5e3f1de0791d8d3e65d5ec39603560ea657a22daa AS builder
 RUN xcaddy build --with github.com/lucaslorentz/caddy-docker-proxy/v2
-FROM caddy:2.6.3-alpine@sha256:ed81228ba91274f9af97ca5d41dafff1a9f1cfcedb6679377ea577c6540469b8
+FROM caddy:2.6.4-alpine@sha256:1d39948357ef8ba114c1620c2b5953fa0b4c3f13fec79cb10ccb1c01b2937a3a
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 CMD ["caddy", "docker-proxy", "--ingress-networks=caddy"]
