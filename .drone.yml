@@ -11,7 +11,7 @@ trigger:
     - main
 steps:
   - name: deploy
-    image: docker:23.0.1-cli-alpine3.17@sha256:ef0e621d70fba35a0421e451c7fcbda62277dd4882c7c6f51b4c456e05eb2cc0
+    image: docker:23.0.1-cli-alpine3.17@sha256:ba7715200ca50204c6a05eb888d97734aaf9e3e02432cbd3ceb2f3953b00ddab
     commands:
       - mkdir -p /root/.ssh
       - install -v -m 600 /home/ubuntu/.ssh/id_ed25519 /root/.ssh/id_ed25519
